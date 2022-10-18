@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="flex illustration">
+            <img src="images/Earth and Moon-amico.png" alt="moon around earth illustration">
+        </div>
+        <div class="flex form-container">
+          <form action="#">
+            <div class="log-forms">
+              <button class="log-btn log-in active-btn">Log-in</button>
+              <button class="log-btn sign-up ">Sign-up</button>
+            </div>
+            <div class="main">
+                <h1 class="title">Welcome back to our website</h1>
+                <p class="subtitle">to order of using our services you should log in your account first</p>
+                <div class="input-container txt-container"><input type="email" class="email txt" id="email" required><span class="placeholder txt-placeholder">Email</span></div>
+                <div class="input-container txt-container"><input type="password" class="pass txt" id="password" pattern="^(?!.*?\W)(?=\D*\d)[^a-z]*[a-z].*$"><span class="placeholder txt-placeholder">password</span></div>
+                <div class="input-container check"><input type="checkbox" id="check"><label for="" class="placeholder">remember me</label></div>
+                <div class="submit-container"><div class="submit-border"></div> <input type="submit" value="Submit" class="submition-btn" onmouseenter="borderAnimation(event)" onmouseout="borderAnimation(event)"></div>
+                <p class="sign-up-directon" onclick="formChanger()">Don't have an account? click here.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+</body>
+</html>
+
+
+<!-- 
+  <form action="#">
+            <div class="log-forms">
+              <button class="log-btn log-in">Log-in</button>
+              <button class="log-btn sign-up active-btn">Sign-up</button>
+            </div>
+            <div class="main">
+                <h1 class="title">Welcome to our website</h1>
+                <p class="subtitle">to order of using our services you should log in your account first</p>
+                <div class="input-container txt-container"><input type="text" class="name txt" id="name"><span class="placeholder txt-placeholder">Name</span></div>
+                <div class="input-container txt-container"><input type="email" class="email txt" id="email"><span class="placeholder txt-placeholder">Email</span></div>
+                <div class="input-container txt-container"><input type="password" class="pass txt" id="password"><span class="placeholder txt-placeholder">password</span></div>
+                <div class="input-container txt-container"><input type="password" class="confirmation txt" id="confirmation"><span class="placeholder txt-placeholder">confirm</span></div>
+                <div class="input-container check"><input type="checkbox"><label for="" class="placeholder">I read your terms of services and i agreed.</label></div>
+                <div class="input-container check"><input type="checkbox"><label for="" class="placeholder">remember me</label></div>
+                <div class="submit-container"><div class="submit-border"></div> <input type="submit" value="Submit" class="submition-btn"></div>
+            </div>
+          </form>
+ -->

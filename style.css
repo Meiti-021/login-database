@@ -1,0 +1,182 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: mova;
+}
+
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
+.flex {
+    height: 100%;
+    width: 50%;
+    padding: 50px;
+}
+
+.illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    width: 90%;
+}
+
+
+.form-container {
+    background-color: rgb(38,50,56);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+form {
+    background-color: rgb(230,230,230);
+    padding: 50px;
+    max-width: 500px;
+    border: 5px solid rgb(200,134,211);
+    border-radius: 15px;
+}
+
+
+.log-forms {
+    height: 50px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.log-btn {
+    width: 70px;
+    height: 30px;
+    border: none;
+    background-color: rgb(244,187,230);
+    cursor: pointer;
+    font-family: mova;
+}
+
+
+.log-btn:hover {
+    filter: brightness(90%)
+}
+
+
+.log-in {
+    border-radius: 10px 0 0 10px;
+    
+}
+
+.sign-up {
+    border-radius: 0 10px 10px 0;
+}
+
+.active-btn {
+     background-color: rgb(200,134,211);
+}
+@font-face {
+    font-family: mova;
+    src: url(fonts/Mova.ttf);
+}
+/* 38 50 56 */
+
+.main > * {
+    margin-bottom: 15px;
+}
+
+.placeholder {
+    margin-left: 10px;
+}
+
+
+.txt {
+    width: 310px;
+    height: 25px;
+    padding: 10px;
+}
+
+
+.submit-container {
+    background-color: rgb(230,230,230);
+    padding: 5px;
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-border {
+    width: 0px;
+    height: 400px;
+    background-image: linear-gradient(to bottom, rgb(226, 188, 233), rgb(209, 9, 245));
+    position: absolute;
+    transition: 1s width;
+}
+
+
+
+
+.submition-btn {
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    /* outline: 3px dashed rgb(200,134,211); */
+    background-color: rgb(38,50,56);
+    color: rgb(230,230,230);
+    z-index: +999;
+    cursor: pointer;
+}
+
+
+.sign-up-directon {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline-block;
+    height: 30px;
+}
+
+
+@media (max-width: 1210px) {
+    .txt-container {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .txt-placeholder {
+        margin-left: 0;
+    }
+
+    .txt-placeholder::after {
+        content: ' :';
+        font-size: 18px;
+    }
+}
+
+
+@media (max-width: 910px){
+    .container {
+        flex-direction: column;
+    }
+    .flex {
+        width: 100%;
+    }
+    .illustration {
+        background-color: rgb(38,50,56);
+    }
+}
