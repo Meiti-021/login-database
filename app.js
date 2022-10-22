@@ -1,77 +1,96 @@
-const formContainer = document.querySelector('.form-container');
-const mainForm = document.querySelector('.main');
-const logBtns = document.querySelectorAll('.log-btn');
-const form = document.querySelector('form');
+const signUpBtn = document.querySelector('.sign-up');
+const logInBtn = document.querySelector('.signup-log-in');
+const signUpForm = document.querySelector('.signup-form');
+const logInForm = document.querySelector('.login-form');
+const loginEmail = document.querySelector('.login-email');
+const loginPass = document.querySelector('.login-pass');
+const loginSetCookie = document.querySelector('.login-cookie');
+const signupDirection = document.querySelector('.sign-up-direction');
+const loginSubmit = document.querySelector('.login-submit');
+const signUpEmail = document.querySelector('.signup-email');
+const signUpPass = document.querySelector('.signup-pass');
+const sigUPSetCookie = document.querySelector('.signup-cookie');
+const signUpSubmit = document.querySelector('.signup-submit');
+const signUpName = document.querySelector('.name');
+const agreement = document.querySelector('.agreement');
+const confirmationPass = document.querySelector('.sign-confirmation');
+console.dir(agreement)
 
-let login = true;
 
-function formChanger() {
-    if(login) {
-        mainForm.innerHTML = `
-        <h1 class="title">Welcome to our website</h1>
-        <p class="subtitle">to order of using our services you should log in your account first</p>
-        <div class="input-container txt-container"><input type="text" class="name txt" id="name"><span class="placeholder txt-placeholder">Name</span></div>
-        <div class="input-container txt-container"><input type="email" class="email txt" id="email"><span class="placeholder txt-placeholder">Email</span></div>
-        <div class="input-container txt-container"><input type="password" class="pass txt" id="password"><span class="placeholder txt-placeholder">password</span></div>
-        <div class="input-container txt-container"><input type="password" class="confirmation txt" id="confirmation"><span class="placeholder txt-placeholder">confirm</span></div>
-        <div class="input-container check"><input type="checkbox" required  onclick="enableSubmit(event)"><label for="" class="placeholder">I read your terms of services and i agreed.</label></div>
-        <div class="input-container check"><input type="checkbox" id="check"><label for="" class="placeholder">remember me</label></div>
-        <div class="submit-container"><div class="submit-border"></div> <input type="submit" value="Submit" class="submition-btn" onmouseenter="borderAnimation(event)" onmouseout="borderAnimation(event)" disabled id="agreement"></div>
-        <p class="sign-up-directon" onclick="formChanger()">Already have an account? click here.</p>`;
-        login = false;
-        logBtns[0].classList.remove('active-btn');
-        logBtns[1].classList.add('active-btn');
-    }   
-    else {
-        mainForm.innerHTML = `
-        <h1 class="title">Welcome back to our website</h1>
-        <p class="subtitle">to order of using our services you should log in your account first</p>
-        <div class="input-container txt-container"><input type="email" class="email txt" id="email"><span class="placeholder txt-placeholder">Email</span></div>
-        <div class="input-container txt-container"><input type="password" class="pass txt" id="password"><span class="placeholder txt-placeholder">password</span></div>
-        <div class="input-container check"><input type="checkbox" id="check"><label for="" class="placeholder">remember me</label></div>
-        <div class="submit-container"><div class="submit-border"></div> <input type="submit" value="Submit" class="submition-btn" onmouseenter="borderAnimation(event)" onmouseout="borderAnimation(event)"></div>
-        <p class="sign-up-directon" onclick="formChanger()">Don't have an account? click here.</p>`;
-        login = true;
-        logBtns[1].classList.remove('active-btn');
-        logBtns[0].classList.add('active-btn');
+let isLogin = true;
+
+const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",'1','2','3','4','5','6','7','8','9','0'];
+function randomIdGenerator(){
+    let myIdArr = [];
+    for(let i = 0;i < 50; i++){
+        myIdArr.push(alphabet[Math.floor(Math.random()*(alphabet.length))]);
     }
+    let myId = myIdArr.join('');
+    return myId;
 }
 
+signUpBtn.addEventListener('click', ()=>{
+    logInForm.classList.remove('active-form');
+    signUpForm.classList.add('active-form');
+})
 
-logBtns.forEach( btn => btn.addEventListener('click', formChanger))
 
-let isOnButton = false;
+logInBtn.addEventListener('click',()=>{
+    signUpForm.classList.remove('active-form');
+    logInForm.classList.add('active-form');
+});
 
-function borderAnimation(event){
-    if(!isOnButton){
-        event.target.parentElement.firstChild.style.width = '400px';
-        isOnButton = true
+signupDirection.addEventListener('click', ()=>{
+    logInForm.classList.remove('active-form');
+    signUpForm.classList.add('active-form');
+})
+
+
+
+signUpSubmit.addEventListener('click',(event)=>{
+    if( confirmationPass.value === signUpPass.value){
+        event.preventDefault();
+        let users = {
+            name: signUpName.value,
+            email: signUpEmail.value,
+            password: signUpPass.value,
+            id: randomIdGenerator()
+        }
+        fetch('https://myusers-d4904-default-rtdb.firebaseio.com/users.json', {
+            method: 'POST',
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify(users)
+        })
+            .then((response) => {
+                window.location.href = 'main.html';
+                window.localStorage.setItem('islogin','true');
+            })
+            .catch(err => console.log(err))
     } else {
-        event.target.parentElement.firstChild.style.width = '0';
-        isOnButton = false;
-    }
-}
-
-// function setCoockie(event){
-    
-// }
-
-
-form.addEventListener('submit', ()=> {
-    let coockieCheck = document.getElementById('check');
-    let emailInput = document.getElementById('email')
-    if(coockieCheck.checked){
-        document.cookie = "name=meiti;path=/"
+        alert('please repeat the password here');
+        confirmationPass.focus()
     }
 })
 
 
-function enableSubmit(event){
-    let agreement = document.getElementById('agreement')
-    if(agreement.disabled){
-        agreement.disabled = false
-    }
-    else{
-        agreement.disabled = true
-    }
-}
+
+
+loginSubmit.addEventListener('click', ()=>{
+    fetch('https://myusers-d4904-default-rtdb.firebaseio.com/users.json')
+        .then(res => res.json())
+        .then(data => Object.values(data))
+        .then((result)=>{
+            let users = result.findIndex((user) => {
+                return user.email === loginEmail.value
+            })
+            if(result[users].password === loginPass.value){
+                window.location.href = 'main.html';
+            }
+            else {
+                alert('invaliud email or password');
+            }
+        })
+        .catch(err => console.log(err))
+})

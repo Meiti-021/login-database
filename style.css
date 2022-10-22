@@ -47,6 +47,13 @@ form {
     max-width: 500px;
     border: 5px solid rgb(200,134,211);
     border-radius: 15px;
+    visibility: hidden;
+    position: absolute;
+}
+
+
+.active-form {
+    visibility: visible;
 }
 
 
@@ -141,7 +148,7 @@ form {
 }
 
 
-.sign-up-directon {
+.sign-up-direction {
     color: blue;
     cursor: pointer;
     text-decoration: underline;
@@ -180,3 +187,7 @@ form {
         background-color: rgb(38,50,56);
     }
 }
+
+
+
+
